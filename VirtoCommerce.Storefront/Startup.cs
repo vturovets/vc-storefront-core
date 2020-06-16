@@ -315,7 +315,7 @@ namespace VirtoCommerce.Storefront
                     NamingStrategy = new CamelCaseNamingStrategy()
                 };
                 options.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Include;
-                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                options.SerializerSettings.NullValueHandling = NullValueHandling.Include;
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 options.SerializerSettings.MissingMemberHandling = MissingMemberHandling.Ignore;
                 // Force serialize MutablePagedList type as array, instead of dictionary
@@ -363,6 +363,7 @@ namespace VirtoCommerce.Storefront
                 c.OperationFilter<OptionalParametersFilter>();
                 c.OperationFilter<ArrayInQueryParametersFilter>();
                 c.OperationFilter<FileUploadOperationFilter>();
+                c.SchemaFilter<NullableSchemaFilter>();
                 c.SchemaFilter<EnumSchemaFilter>();
                 c.SchemaFilter<NewtonsoftJsonIgnoreFilter>();
 
